@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,8 +38,8 @@ public class SlideFragment extends Fragment {
     }
 
     private void setImage(String url) {
-        Bitmap bmImg = BitmapFactory.decodeFile(url);
-        mImageView.setImageBitmap(bmImg);
+//        Bitmap bmImg = BitmapFactory.decodeFile(url);
+        Glide.with(getActivity()).load(url).into(mImageView);
     }
 
 }

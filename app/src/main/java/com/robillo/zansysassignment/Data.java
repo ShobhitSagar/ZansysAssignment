@@ -9,6 +9,11 @@ public class Data {
     String url;
     String caption;
 
+    public Data(String url, String caption) {
+        this.url = url;
+        this.caption = caption;
+    }
+
     public String getUrl() {
         return url;
     }

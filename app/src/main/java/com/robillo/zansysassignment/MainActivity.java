@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity {
 
     private int PICK_IMAGE_REQUEST = 1;
     String imageEncoded;
@@ -55,9 +55,9 @@ public class MainActivity extends FragmentActivity {
         }
 
         imageCaptions = new ArrayList<>();
-        mHideLayout = findViewById(R.id.hide_layout);
-        mEditText = findViewById(R.id.edit_text);
-        mPager = findViewById(R.id.view_pager);
+        mHideLayout = (FrameLayout) findViewById(R.id.hide_layout);
+        mEditText = (EditText) findViewById(R.id.edit_text);
+        mPager = (ViewPager) findViewById(R.id.view_pager);
         mAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
@@ -76,6 +76,8 @@ public class MainActivity extends FragmentActivity {
         (findViewById(R.id.send)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("position and edittext", mPosition + mEditText.getText().toString());
+                imageCaptions.set(mPosition, mEditText.getText().toString());
                 Intent i = new Intent(MainActivity.this, DisplayActivity.class);
                 i.putStringArrayListExtra("array", (ArrayList<String>) imagesEncodedList);
                 i.putStringArrayListExtra("captions", (ArrayList<String>) imageCaptions);
@@ -136,6 +138,9 @@ public class MainActivity extends FragmentActivity {
             }
             else {
                 mNumPages = imagesEncodedList.size();
+                for(int i=0; i<mNumPages; i++){
+                    imageCaptions.add("NO TEXT");
+                }
                 mPager.setAdapter(mAdapter);
                 (findViewById(R.id.select)).setVisibility(View.GONE);
                 mHideLayout.setVisibility(View.VISIBLE);
@@ -175,10 +180,7 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onPageSelected(int position) {
             if(mEditText.getText().length()!=0){
-                imageCaptions.add(mEditText.getText().toString());
-            }
-            else {
-                imageCaptions.add("NO TEXT");
+                imageCaptions.set(mPosition, mEditText.getText().toString());
             }
             mEditText.setText("");
             mPosition = position;

@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +19,10 @@ import java.util.List;
 
 public class RVRecycler extends RecyclerView.Adapter<VHRecycler>{
 
-    List<String> data = new ArrayList<>();
+    List<Data> data = new ArrayList<>();
     Context parentContext, context;
 
-    public RVRecycler(List<String> data, Context context) {
+    public RVRecycler(List<Data> data, Context context) {
         this.data = data;
         this.context = context;
     }
@@ -34,8 +36,12 @@ public class RVRecycler extends RecyclerView.Adapter<VHRecycler>{
 
     @Override
     public void onBindViewHolder(VHRecycler holder, int position) {
-        Bitmap bmImg = BitmapFactory.decodeFile(data.get(position));
-        holder.imageView.setImageBitmap(bmImg);
+//        Bitmap bmImg = BitmapFactory.decodeFile(data.get(position).getUrl());
+//        holder.imageView.setImageBitmap(bmImg);
+        Glide.with(parentContext).load(data.get(position).getUrl()).into(holder.imageView);
+        if(!data.get(position).getCaption().equals("NO TEXT")){
+            holder.textView.setText(data.get(position).caption);
+        }
     }
 
     @Override

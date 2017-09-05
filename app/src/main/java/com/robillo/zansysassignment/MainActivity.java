@@ -77,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("position and edittext", mPosition + mEditText.getText().toString());
+                if(imageCaptions.size()==0){
+                    imageCaptions.add("NO TEXT");
+                }
                 imageCaptions.set(mPosition, mEditText.getText().toString());
                 Intent i = new Intent(MainActivity.this, DisplayActivity.class);
                 i.putStringArrayListExtra("array", (ArrayList<String>) imagesEncodedList);

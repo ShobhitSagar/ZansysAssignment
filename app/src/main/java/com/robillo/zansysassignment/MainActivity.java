@@ -185,7 +185,12 @@ public class MainActivity extends AppCompatActivity {
             if(mEditText.getText().length()!=0){
                 imageCaptions.set(mPosition, mEditText.getText().toString());
             }
-            mEditText.setText("");
+            if(!imageCaptions.get(position).equals("NO TEXT")){
+                mEditText.setText(imageCaptions.get(position));
+            }
+            else {
+                mEditText.setText("");
+            }
             mPosition = position;
         }
 

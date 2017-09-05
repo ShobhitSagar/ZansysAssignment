@@ -42,6 +42,9 @@ public class RVRecycler extends RecyclerView.Adapter<VHRecycler>{
         if(!data.get(position).getCaption().equals("NO TEXT")){
             holder.textView.setText(data.get(position).caption);
         }
+        else {
+            holder.textView.setBackgroundColor(parentContext.getResources().getColor(R.color.transparent));
+        }
     }
 
     @Override

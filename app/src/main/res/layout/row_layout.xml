@@ -4,8 +4,8 @@
     android:layout_height="200sp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="4sp"
-    app:cardElevation="2sp">
+    android:layout_margin="6sp"
+    app:cardElevation="4sp">
 
     <FrameLayout
         android:layout_width="match_parent"
